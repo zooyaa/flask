@@ -29,5 +29,15 @@ def variable():
     name = "yogi"
     return render_template('variable.html', html_name=name)
 
+@app.route('/greeting/<string:name>/')
+def greeting(name):
+    def_name = name
+    return render_template('greeting.html', html_name=def_name)
+
+@app.route('/cube/<int:number>/')
+def cube(number):
+    cube = number ** 3
+    return render_template('cube.html', number=number, cube=cube)
+
 if __name__ == "__main__":
     app.run(debug=True)     # .py 파일을 python hello.py 명령어로 실행시키기 위한 작업   # 자동으로 서버에 반영해주는 역할도 함
