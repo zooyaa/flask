@@ -99,8 +99,9 @@ def opgg():
     opgg_url = f'https://www.op.gg/summoner/userName={username}'
     res = requests.get(opgg_url).text
     soup = BeautifulSoup(res, 'html.parser')
-    tier = soup.select_one("#SummonerLayoutContent > div.tabItem.Content.SummonerLayoutContent.summonerLayout-summary > div.SideContent > div.TierBox.Box > div > div.TierRankInfo > div.TierRank")
-    return render_template('opgg.html', username=username, opgg_url=opgg_url, tier=tier.text)
+    tier = soup.select_one('#SummonerLayoutContent > div.tabItem.Content.SummonerLayoutContent.summonerLayout-summary > div.SideContent > div.TierBox.Box > div > div.TierRankInfo > div.TierRank')
+    day_ago = soup.select_one('#SummonerLayoutContent > div.tabItem.Content.SummonerLayoutContent.summonerLayout-summary > div.RealContent > div > div.Content > div.GameItemList > div:nth-child(2) > div > div.Content > div.GameStats > div.TimeStamp > span')
+    return render_template('opgg.html', username=username, opgg_url=opgg_url, tier=tier.text, day_ago=day_ago.text)
 
 if __name__ == "__main__":
     app.run(debug=True)     # .py 파일을 python hello.py 명령어로 실행시키기 위한 작업   # 자동으로 서버에 반영해주는 역할도 함
