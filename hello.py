@@ -1,4 +1,4 @@
-from flask import Flask, escape, request
+from flask import Flask, escape, request, render_template
 # flask 모듈에서 Flask, escape, request 불러오기
 
 app = Flask(__name__)
@@ -16,5 +16,13 @@ def hi():
 def zooya():           # zooya() 함수로 응답
     return 'Hello, zooya!'
 
+@app.route('/html_tag')
+def html_tag():
+    return '<h1>안녕하세요</h1>'
+
+@app.route('/html_file')
+def html_file():
+    return render_template('index.html')
+
 if __name__ == "__main__":
-    app.run(debug=True)     # .py 파일을 python hello.py 명령어로 실행시키기 위한 작업
+    app.run(debug=True)     # .py 파일을 python hello.py 명령어로 실행시키기 위한 작업   # 자동으로 서버에 반영해주는 역할도 함
