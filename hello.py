@@ -67,5 +67,17 @@ def movies():
     movies = ["겨울왕국2", "쥬만지", "감쪽같은 그녀"]
     return render_template('movies.html', movies=movies)
 
+@app.route('/ping')
+def ping():
+    return render_template('ping.html')
+
+@app.route('/pong', methods=['GET', 'POST'])
+def pong():
+    # request.args => GET방식으로 데이터가 들어오는 경우
+    # keyword = request.args.get('keyword')
+    # print(request.form.get('keyword'))
+    keyword = request.form.get('keyword')
+    return render_template('pong.html', keyword=keyword)
+
 if __name__ == "__main__":
     app.run(debug=True)     # .py 파일을 python hello.py 명령어로 실행시키기 위한 작업   # 자동으로 서버에 반영해주는 역할도 함
