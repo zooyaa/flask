@@ -62,5 +62,10 @@ def lunch():
         img = "http://media.foodnetwork.ca/recipetracker/ce9180e1-7dee-4826-b6e3-69bded15310e_anju03_WebReady.jpg"
     return render_template('lunch.html', menu=menu, img=img)
 
+@app.route('/movies')
+def movies():
+    movies = ["겨울왕국2", "쥬만지", "감쪽같은 그녀"]
+    return render_template('movies.html', movies=movies)
+
 if __name__ == "__main__":
     app.run(debug=True)     # .py 파일을 python hello.py 명령어로 실행시키기 위한 작업   # 자동으로 서버에 반영해주는 역할도 함
