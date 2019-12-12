@@ -22,7 +22,12 @@ def html_tag():
 
 @app.route('/html_file')
 def html_file():
-    return render_template('index.html')
+    return render_template('index.html')    # render_template() 함수
+
+@app.route('/variable')
+def variable():
+    name = "yogi"
+    return render_template('variable.html', html_name=name)
 
 if __name__ == "__main__":
     app.run(debug=True)     # .py 파일을 python hello.py 명령어로 실행시키기 위한 작업   # 자동으로 서버에 반영해주는 역할도 함
