@@ -1,5 +1,6 @@
 from flask import Flask, escape, request, render_template
 # flask 모듈에서 Flask, escape, request 불러오기
+import random
 
 app = Flask(__name__)
 
@@ -38,6 +39,28 @@ def greeting(name):
 def cube(number):
     cube = number ** 3
     return render_template('cube.html', number=number, cube=cube)
+
+@app.route('/lunch')
+def lunch():
+    # menu_dic = {
+    #     "sandwich" : "https://realfood.tesco.com/media/images/RFO-1400x919-ChickenClubSandwich-0ee77c05-5a77-49ac-a3bd-4d45e3b4dca7-0-1400x919.jpg",
+    #     "pad thai" : "https://www.washingtonpost.com/rf/image_982w/2010-2019/WashingtonPost/2019/05/21/Food/Images/v-essentials-padthai_08-001.jpg",
+    #     "galbi" : "http://media.foodnetwork.ca/recipetracker/ce9180e1-7dee-4826-b6e3-69bded15310e_anju03_WebReady.jpg"
+    # }
+    # menu_list = list(menu.keys())
+    # menu = random.choice(menu_list)
+    # img = menu_dic[menu]
+    # return render_template('lunch.html', menu=menu, img=img)
+    menu_list = ["sandwich", "pad thai", "galbi"]
+    # menu = random.sample(menu_list, 1)[0]
+    menu = random.choice(menu_list)
+    if menu == menu_list[0]:
+        img = "https://realfood.tesco.com/media/images/RFO-1400x919-ChickenClubSandwich-0ee77c05-5a77-49ac-a3bd-4d45e3b4dca7-0-1400x919.jpg"
+    elif menu == menu_list[1]:
+        img = "https://www.washingtonpost.com/rf/image_982w/2010-2019/WashingtonPost/2019/05/21/Food/Images/v-essentials-padthai_08-001.jpg"
+    else:
+        img = "http://media.foodnetwork.ca/recipetracker/ce9180e1-7dee-4826-b6e3-69bded15310e_anju03_WebReady.jpg"
+    return render_template('lunch.html', menu=menu, img=img)
 
 if __name__ == "__main__":
     app.run(debug=True)     # .py 파일을 python hello.py 명령어로 실행시키기 위한 작업   # 자동으로 서버에 반영해주는 역할도 함
